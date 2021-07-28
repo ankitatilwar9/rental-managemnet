@@ -1,0 +1,38 @@
+<div class="no-data" *ngIf="categoriesList.length <= 0 ; else elseBlock">
+  <span>Welcome to </span>
+  <span>RENTAL MANAGEMENT SYSTEM </span>
+  <span>Please select location</span>
+</div>
+
+<ng-template #elseBlock>
+  <div class="catalog-container">
+    <span class="catalog" (click)="onCatalogClicked()"> Equipment Catalog </span>
+    <span class="catalog-sub" *ngIf="displaySubCategoryFlag"> / {{subCategoriesList.name}}</span>
+  </div>
+
+  <div class="product-list" *ngIf="displayCategoryFlag">
+    <div *ngFor="let item of categoriesList.categories">
+      <div>
+        <img class="img-div" [src]="imageCategory + item.image">
+        <div class="btn-div" (click)="onImageClick(item)">
+          <button>{{item.name}}</button>
+          <span>></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="displaySubCategoryFlag">
+    <div class="product-list">
+      <div *ngFor="let item of subCategoriesList.subcategories">
+        <div>
+          <img class="img-div" [src]="imageSubcategory + item.image">
+          <div class="btn-div">
+            <button>{{item.name}}</button>
+            <span>></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
